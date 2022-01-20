@@ -81,6 +81,7 @@
   "feedback.alert.spin.alertTitle": "Alert message title",
   "feedback.alert.spin.alertDescription": "Further details about the context of this alert.",
   "forms.input.header": "Input",
+  "forms.input.booking": "Your Booking Code",
   "forms.input.basicTitle": "Basic usage",
   "forms.input.basicSubTitle": "Basic usage example.",
   "forms.input.variationsTitle": "Three sizes of Input",

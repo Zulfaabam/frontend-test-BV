@@ -1,3 +1,3 @@
-import githubSearch from './githubSearch/reducers';
+import guestSearch from './guestSearch/reducers'
 
-export default { githubSearch };
+export default { guestSearch }

@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Loader from '../../components/utility/loader'
 import HelperText from '../../components/utility/helper-text'
-import Pagination from '../../components/uielements/pagination'
-import { per_page } from '../redux/guestSearch/sagas'
 import {
-  GithubResultListStyleWrapper,
-  GithubResultStyleWrapper,
-} from './githubResult.style'
+  GuestDetailsListStyleWrapper,
+  GuestDetailsStyleWrapper,
+} from './guestDetails.style'
+
+const guestSearchApi = `https://bv-online-assessment.herokuapp.com/api/bookings`
 
 function SearchList(result) {
   return (
-    <GithubResultListStyleWrapper className="isoGithubResultList">
-      {result.map((item) => {
+    <GuestDetailsListStyleWrapper className="isoGithubResultList">
+      {result.booking_name}
+      {/* {result.map((item) => {
         const onClick = () => {
           window.open(item.html_url, '_blank')
         }
@@ -40,44 +41,42 @@ function SearchList(result) {
             <span className="updateDate">Updated on {updateDate}</span>
           </div>
         )
-      })}
-    </GithubResultListStyleWrapper>
+      })} */}
+    </GuestDetailsListStyleWrapper>
   )
 }
 
-const GitResult = ({ GitSearch, onPageChange }) => {
-  const { searcText, result, loading, error, page, total_count } = GitSearch
-  if (!searcText) {
+export default function guestDetails({ GuestSearch }) {
+  const { searchText, result, loading, error } = GuestSearch
+  if (!searchText) {
     return <div />
   }
   if (loading) {
     return <Loader />
   }
-  if (error || !total_count) {
+  if (error) {
     return <HelperText text="THERE ARE SOME ERRORS" />
   }
-  if (result.length === 0) {
+  if (Object.keys(result).length === 0) {
     return <HelperText text="No Result Found" />
   }
-  const visibleItem = total_count > 1000 ? 1000 : total_count
-  const pageCount = Math.floor(visibleItem / per_page)
+  //   const [data, setData] = useState()
+
+  //   useEffect(() => {
+  //     const getData = async () =>
+  //       await fetch(`${guestSearchApi}/${searchText}`, { method: 'GET' })
+  //         .then((res) => res.json())
+  //         .then((res) => setData(res))
+  //         .catch((error) => error)
+
+  //     getData()
+  //   }, [searchText])
+  //   console.log(data)
+
   return (
-    <GithubResultStyleWrapper className="isoGithubSearchResult">
-      <p className="isoTotalRepository">
-        <span>{`${total_count}`} repository results</span>
-      </p>
+    <div>
+      <h1>guest details</h1>
       {SearchList(result)}
-      <div className="githubSearchPagination">
-        <Pagination
-          defaultCurrent={page}
-          total={pageCount}
-          onChange={(page) => {
-            onPageChange(searcText, page)
-          }}
-        />
-      </div>
-    </GithubResultStyleWrapper>
+    </div>
   )
 }
-
-export default GitResult
