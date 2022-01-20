@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { connect } from 'react-redux'
 import App from './containers/App/App'
-import asyncComponent from './helpers/AsyncFunc'
-import Auth0 from './helpers/auth0'
+// import asyncComponent from './helpers/AsyncFunc'
+// import Auth0 from './helpers/auth0'
 
 // const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
 //   <Route
@@ -79,7 +79,10 @@ const PublicRoutes = ({ history, isLoggedIn }) => {
           component={App}
           isLoggedIn={isLoggedIn}
         /> */}
-        <Route path="/" component={App} />
+        <Route exact path="/">
+          <Redirect to="/dashboard" />
+        </Route>
+        <Route path="/dashboard" component={App} />
       </div>
     </ConnectedRouter>
   )

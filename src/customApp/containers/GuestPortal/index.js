@@ -12,12 +12,19 @@ import basicStyle from '../../../settings/basicStyle'
 import actions from '../../redux/githubSearch/actions'
 
 export default function guestPortal() {
+  const { rowStyle, colStyle, gutter } = basicStyle
+
   return (
     <LayoutWrapper>
       <PageHeader>
         <IntlMessages id="sidebar.guestPortal" />
       </PageHeader>
-      <h1>guest portal</h1>
+      <Row style={rowStyle} gutter={gutter} justify="start">
+        <Col md={24} sm={24} xs={24} style={colStyle}>
+          <IntlMessages id="sidebar.guestPortal" />
+          <InputSearch />
+        </Col>
+      </Row>
     </LayoutWrapper>
   )
 }

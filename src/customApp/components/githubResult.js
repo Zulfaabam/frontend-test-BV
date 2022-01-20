@@ -1,21 +1,21 @@
-import React from 'react';
-import Loader from '../../components/utility/loader';
-import HelperText from '../../components/utility/helper-text';
-import Pagination from '../../components/uielements/pagination';
-import { per_page } from '../redux/githubSearch/sagas';
+import React from 'react'
+import Loader from '../../components/utility/loader'
+import HelperText from '../../components/utility/helper-text'
+import Pagination from '../../components/uielements/pagination'
+import { per_page } from '../redux/githubSearch/sagas'
 import {
   GithubResultListStyleWrapper,
   GithubResultStyleWrapper,
-} from './githubResult.style';
+} from './githubResult.style'
 
 function SearchList(result) {
   return (
     <GithubResultListStyleWrapper className="isoGithubResultList">
-      {result.map(item => {
+      {result.map((item) => {
         const onClick = () => {
-          window.open(item.html_url, '_blank');
-        };
-        const updateDate = new Date(item.updated_at).toDateString();
+          window.open(item.html_url, '_blank')
+        }
+        const updateDate = new Date(item.updated_at).toDateString()
         return (
           <div key={item.id} className="isoSingleRepository">
             <div className="titleAndLanguage">
@@ -39,27 +39,28 @@ function SearchList(result) {
             {item.description ? <p>{item.description}</p> : ''}
             <span className="updateDate">Updated on {updateDate}</span>
           </div>
-        );
+        )
       })}
     </GithubResultListStyleWrapper>
-  );
+  )
 }
+
 const GitResult = ({ GitSearch, onPageChange }) => {
-  const { searcText, result, loading, error, page, total_count } = GitSearch;
+  const { searcText, result, loading, error, page, total_count } = GitSearch
   if (!searcText) {
-    return <div />;
+    return <div />
   }
   if (loading) {
-    return <Loader />;
+    return <Loader />
   }
   if (error || !total_count) {
-    return <HelperText text="THERE ARE SOME ERRORS" />;
+    return <HelperText text="THERE ARE SOME ERRORS" />
   }
   if (result.length === 0) {
-    return <HelperText text="No Result Found" />;
+    return <HelperText text="No Result Found" />
   }
-  const visibleItem = total_count > 1000 ? 1000 : total_count;
-  const pageCount = Math.floor(visibleItem / per_page);
+  const visibleItem = total_count > 1000 ? 1000 : total_count
+  const pageCount = Math.floor(visibleItem / per_page)
   return (
     <GithubResultStyleWrapper className="isoGithubSearchResult">
       <p className="isoTotalRepository">
@@ -70,13 +71,13 @@ const GitResult = ({ GitSearch, onPageChange }) => {
         <Pagination
           defaultCurrent={page}
           total={pageCount}
-          onChange={page => {
-            onPageChange(searcText, page);
+          onChange={(page) => {
+            onPageChange(searcText, page)
           }}
         />
       </div>
     </GithubResultStyleWrapper>
-  );
-};
+  )
+}
 
-export default GitResult;
+export default GitResult
