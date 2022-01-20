@@ -1,13 +1,7 @@
 const options = [
   {
-    key: 'githubSearch',
-    label: 'sidebar.githubSearch',
-    leftIcon: 'ion-social-github'
+    key: 'guestPortal',
+    label: 'sidebar.guestPortal',
   },
-  {
-    key: 'blank_page',
-    label: 'sidebar.blankPage',
-    leftIcon: 'ion-document'
-  }
-];
-export default options;
+]
+export default options
