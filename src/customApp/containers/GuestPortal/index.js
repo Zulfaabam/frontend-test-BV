@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'antd'
 import PageHeader from '../../../components/utility/pageHeader'
@@ -7,12 +7,29 @@ import LayoutWrapper from '../../../components/utility/layoutWrapper'
 import { InputSearch } from '../../../components/uielements/input'
 import IntlMessages from '../../../components/utility/intlMessages'
 import notification from '../../../components/notification'
-import GitResult from '../../components/githubResult'
+// import GitResult from '../../components/githubResult'
+import GuestDetails from '../../components/guestDetails'
 import basicStyle from '../../../settings/basicStyle'
-import actions from '../../redux/githubSearch/actions'
+import actions from '../../redux/guestSearch/actions'
 
-export default function guestPortal() {
+const { guestSearch } = actions
+
+function guestPortal({ GuestSearch }) {
   const { rowStyle, colStyle, gutter } = basicStyle
+
+  const onSearch = (value) => {
+    if (value && value.length > 0) {
+      guestSearch(value)
+      console.log(guestSearch(value))
+    } else {
+      notification('error', 'Please type something')
+    }
+  }
+  console.log(GuestSearch)
+
+  useEffect(() => {
+    onSearch(GuestSearch.searchText)
+  }, [])
 
   return (
     <LayoutWrapper>
@@ -21,13 +38,57 @@ export default function guestPortal() {
       </PageHeader>
       <Row style={rowStyle} gutter={gutter} justify="start">
         <Col md={24} sm={24} xs={24} style={colStyle}>
-          <IntlMessages id="sidebar.guestPortal" />
-          <InputSearch />
+          <Box style={{ minHeight: 400 }}>
+            <IntlMessages id="forms.input.booking" />
+            <InputSearch onSearch={onSearch} />
+            <GuestDetails GuestSearch={GuestSearch} />
+          </Box>
         </Col>
       </Row>
     </LayoutWrapper>
   )
 }
+
+// class guestPortal extends Component {
+//   onSearch = (value) => {
+//     if (value && value.length > 0) {
+//       guestSearch(value)
+//       console.log(guestSearch(value))
+//     } else {
+//       notification('error', 'Please type something')
+//     }
+//   }
+//   componentDidMount() {
+//     this.onSearch(this.props.GuestSearch.searchText)
+//   }
+
+//   render() {
+//     const { rowStyle, colStyle, gutter } = basicStyle
+//     const { GuestSearch } = this.props
+//     return (
+//       <LayoutWrapper>
+//         <PageHeader>
+//           <IntlMessages id="sidebar.guestPortal" />
+//         </PageHeader>
+//         <Row style={rowStyle} gutter={gutter} justify="start">
+//           <Col md={24} sm={24} xs={24} style={colStyle}>
+//             <Box style={{ minHeight: 400 }}>
+//               <IntlMessages id="forms.input.booking" />
+//               <InputSearch onSearch={this.onSearch} />
+//               <GuestDetails GuestSearch={GuestSearch} />
+//             </Box>
+//           </Col>
+//         </Row>
+//       </LayoutWrapper>
+//     )
+//   }
+// }
+
+function mapStateToProps(state) {
+  return { GuestSearch: state.guestSearch }
+}
+
+export default connect(mapStateToProps, { guestSearch })(guestPortal)
 
 // const { gitSearch, onPageChange } = actions
 
@@ -70,11 +131,3 @@ export default function guestPortal() {
 //     )
 //   }
 // }
-
-// function mapStateToProps(state) {
-//   return { GitSearch: state.githubSearch }
-// }
-
-// export default connect(mapStateToProps, { gitSearch, onPageChange })(
-//   GuestPortal
-// )
