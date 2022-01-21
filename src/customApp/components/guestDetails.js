@@ -7,15 +7,15 @@ import { TimePicker } from 'antd'
 
 const etaApi = `https://bv-online-assessment.herokuapp.com/api/bookings/:booking_code/update-eta`
 
-function SearchList(result) {
+function SearchList(result, onChange) {
   // const [value, setValue] = useState(null)
 
   // const onChange = (time) => {
   //   setValue(time)
   // }
-  function onChange(time, timeString) {
-    console.log(time, timeString)
-  }
+  // function onChange(time, timeString) {
+  //   console.log(time, timeString)
+  // }
 
   return (
     <GuestDetailsStyleWrapper>
@@ -75,10 +75,20 @@ export default function guestDetails({ GuestSearch }) {
         .then((res) => setData(res))
         .catch((error) => error)
 
+    const updateEta = async () =>
+      await fetch(
+        `https://bv-online-assessment.herokuapp.com/api/bookings/${searchText}/updateEta`,
+        { method: 'PUT', body: 'arrival_time = 13:00' }
+          .then((res) => res.json())
+          .then((res) => setData(res))
+          .catch((error) => error)
+      )
+
     getData()
   }, [searchText])
-  console.log(data)
-  console.log(searchText)
+
+  // console.log(data)
+  // console.log(searchText)
 
   return <div>{data === undefined ? <Loader /> : SearchList(data)}</div>
 }
