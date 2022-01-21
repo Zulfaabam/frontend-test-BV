@@ -14,15 +14,6 @@ import { Form, Input } from 'antd'
 
 const { Search } = Input
 
-const formItemLayout = {
-  labelCol: {
-    span: 7,
-  },
-  wrapperCol: {
-    span: 12,
-  },
-}
-
 const { guestSearch } = actions
 
 function guestPortal({ GuestSearch }) {
@@ -53,15 +44,21 @@ function guestPortal({ GuestSearch }) {
       <PageHeader>
         <IntlMessages id="sidebar.guestPortal" />
       </PageHeader>
-      <Row style={rowStyle} gutter={gutter} justify="start">
+      <Row style={rowStyle} gutter={gutter} justify="center">
         <Col md={24} sm={24} xs={24} style={colStyle}>
           <Box style={{ minHeight: 400 }}>
-            <IntlMessages id="forms.input.booking" />
+            <h2 style={{ textAlign: 'center' }}>
+              <IntlMessages id="forms.input.booking" />
+            </h2>
             <Form>
               <Form.Item
-                {...formItemLayout}
                 validateStatus={valid.validateStatus}
                 help={valid.errorMsg}
+                style={{
+                  width: '500px',
+                  display: 'block',
+                  margin: '1rem auto',
+                }}
               >
                 <Search onSearch={onSearch} />
               </Form.Item>

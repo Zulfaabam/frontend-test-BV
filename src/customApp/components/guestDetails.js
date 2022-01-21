@@ -4,64 +4,7 @@ import HelperText from '../../components/utility/helper-text'
 import { GuestDetailsStyleWrapper } from './guestDetails.style'
 import IntlMessages from '../../components/utility/intlMessages'
 import { TimePicker } from 'antd'
-import moment from 'moment'
-
-const etaApi = `https://bv-online-assessment.herokuapp.com/api/bookings/:booking_code/update-eta`
-
-function SearchList(result) {
-  // const [value, setValue] = useState(null)
-
-  // const onChange = (time) => {
-  //   setValue(time)
-  // }
-  // const updatedArrival = (time) => {
-  //   result.arrival_time = time
-  // }
-
-  function onSelect(time) {
-    console.log(time)
-  }
-
-  function onChange(time, timeString) {
-    console.log(time, timeString)
-  }
-
-  return (
-    <GuestDetailsStyleWrapper>
-      <img src={result.profile_picture} alt={result.guest_name} />
-      <h3>Hi, {result.guest_name}!</h3>
-      <IntlMessages id="guest.thanks" />
-      <div>
-        <IntlMessages id="guest.property.name" />
-        <strong>{result.property_name}</strong>
-      </div>
-      <div>
-        <IntlMessages id="guest.check.in.date" />
-        <strong>{result.check_in_date}</strong>
-        <IntlMessages id="guest.check.out.date" />
-        <strong>{result.check_out_date}</strong>
-      </div>
-      <div>
-        <IntlMessages id="guest.arrival.time" />
-        <span>
-          <TimePicker
-            format="HH:mm"
-            value={result.arrival_time === '' ? moment() : result.arrival_time}
-            // value={moment()}
-            // value={(moment(updatedArrival), 'HH:mm')}
-            onSelect={onSelect}
-            onChange={onChange}
-          />
-          {result.arrival_time === '' ? (
-            <IntlMessages id="guest.arrival.time.notset" />
-          ) : (
-            ''
-          )}
-        </span>
-      </div>
-    </GuestDetailsStyleWrapper>
-  )
-}
+// import moment from 'moment'
 
 export default function guestDetails({ GuestSearch }) {
   const { searchText, loading, error } = GuestSearch
@@ -84,23 +27,69 @@ export default function guestDetails({ GuestSearch }) {
         { method: 'GET' }
       )
         .then((res) => res.json())
-        .then((res) => setData(res))
+        .then((res) => {
+          setData(res)
+          // setDataUpdated(data)
+        })
         .catch((error) => error)
-
-    // const updateEta = async () =>
-    //   await fetch(
-    //     `https://bv-online-assessment.herokuapp.com/api/bookings/${searchText}/updateEta`,
-    //     { method: 'PUT', body: 'arrival_time = 13:00' }
-    //       .then((res) => res.json())
-    //       .then((res) => setData(res))
-    //       .catch((error) => error)
-    //   )
 
     getData()
   }, [searchText])
 
-  // console.log(data)
+  console.log(data)
   // console.log(searchText)
 
-  return <div>{data === undefined ? <Loader /> : SearchList(data)}</div>
+  const updateEta = async (time, timeString) => {
+    console.log(time, timeString)
+    await fetch(
+      `https://bv-online-assessment.herokuapp.com/api/bookings/${searchText}/update-eta`,
+      { method: 'PUT', body: { arrival_time: timeString } }
+    )
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((error) => error)
+    // console.log(data)
+  }
+
+  return (
+    <div>
+      {data === undefined ? (
+        <Loader />
+      ) : (
+        <GuestDetailsStyleWrapper>
+          <img src={data.profile_picture} alt={data.guest_name} />
+          <h3>Hi, {data.guest_name}!</h3>
+          <IntlMessages id="guest.thanks" />
+          <div>
+            <IntlMessages id="guest.property.name" />
+            <strong>{data.property_name}</strong>
+          </div>
+          <div>
+            <IntlMessages id="guest.check.in.date" />
+            <strong>{data.check_in_date}</strong>
+            <IntlMessages id="guest.check.out.date" />
+            <strong>{data.check_out_date}</strong>
+          </div>
+          <div>
+            <IntlMessages id="guest.arrival.time" />
+            <span>
+              <TimePicker
+                format="HH:mm"
+                // value={result.arrival_time === '' ? '' : result.arrival_time}
+                // value={moment()}
+                // value={(moment(updatedArrival), 'HH:mm')}
+                // onSelect={onSelect}
+                onChange={updateEta}
+              />
+              {data.arrival_time === '' ? (
+                <IntlMessages id="guest.arrival.time.notset" />
+              ) : (
+                ''
+              )}
+            </span>
+          </div>
+        </GuestDetailsStyleWrapper>
+      )}
+    </div>
+  )
 }

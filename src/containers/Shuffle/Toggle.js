@@ -9,7 +9,7 @@ const Toggle = ({ clickHandler, text, icon, active, large }) => {
     active,
     large,
   })
-  const iconClass = `${icon}`
+  // const iconClass = `${icon}`
 
   return (
     <button className={`isoControlBtn ${buttonClass}`} onClick={clickHandler}>
