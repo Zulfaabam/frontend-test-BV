@@ -20,6 +20,7 @@ export default function guestDetails({ GuestSearch }) {
 
   const [data, setData] = useState()
 
+  //fetching API data from booking code
   useEffect(() => {
     const getData = async () =>
       await fetch(
@@ -29,7 +30,6 @@ export default function guestDetails({ GuestSearch }) {
         .then((res) => res.json())
         .then((res) => {
           setData(res)
-          // setDataUpdated(data)
         })
         .catch((error) => error)
 
@@ -39,6 +39,7 @@ export default function guestDetails({ GuestSearch }) {
   console.log(data)
   // console.log(searchText)
 
+  // update ETA
   const updateEta = async (time, timeString) => {
     console.log(time, timeString)
     await fetch(
@@ -73,14 +74,7 @@ export default function guestDetails({ GuestSearch }) {
           <div>
             <IntlMessages id="guest.arrival.time" />
             <span>
-              <TimePicker
-                format="HH:mm"
-                // value={result.arrival_time === '' ? '' : result.arrival_time}
-                // value={moment()}
-                // value={(moment(updatedArrival), 'HH:mm')}
-                // onSelect={onSelect}
-                onChange={updateEta}
-              />
+              <TimePicker format="HH:mm" onChange={updateEta} />
               {data.arrival_time === '' ? (
                 <IntlMessages id="guest.arrival.time.notset" />
               ) : (

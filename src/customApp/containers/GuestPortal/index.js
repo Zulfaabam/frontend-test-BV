@@ -18,15 +18,14 @@ const { guestSearch } = actions
 
 function guestPortal({ GuestSearch }) {
   const { rowStyle, colStyle, gutter } = basicStyle
-
   const [valid, setValid] = useState({})
 
   const onSearch = (value) => {
     if (value && value.length > 0) {
       guestSearch(value)
-      validate(value)
-      setValid({ ...validate(value) })
-      GuestSearch.searchText = value
+      validate(value) //validate the input from user
+      setValid({ ...validate(value) }) //set the validation to the valid state
+      GuestSearch.searchText = value //set the search text from guest search to value
       // console.log(guestSearch(value))
       // console.log(validate(value))
     } else {

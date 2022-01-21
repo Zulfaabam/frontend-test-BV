@@ -14,11 +14,6 @@ function* searchRequest(searchText) {
   try {
     const searchResult = yield call(onSearchRequest, searchText)
     yield put(actions.guestSearchSuccess(searchResult))
-    // if (searchResult) {
-    //   yield put(actions.guestSearchSuccess(searchResult))
-    // } else {
-    //   yield put(actions.guestSearchSuccess())
-    // }
   } catch (error) {
     yield put(actions.guestSearchError(error))
   }
