@@ -47,7 +47,7 @@ export default function guestDetails({ GuestSearch }) {
       { method: 'PUT', body: { arrival_time: timeString } }
     )
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => setData(res))
       .catch((error) => error)
     // console.log(data)
   }
