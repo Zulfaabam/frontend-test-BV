@@ -1,6 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Icon } from 'antd';
+import React from 'react'
+import classNames from 'classnames'
+// import { Icon } from 'antd';
 
 const Toggle = ({ clickHandler, text, icon, active, large }) => {
   const buttonClass = classNames({
@@ -8,15 +8,15 @@ const Toggle = ({ clickHandler, text, icon, active, large }) => {
     noIcon: !icon,
     active,
     large,
-  });
-  const iconClass = `${icon}`;
+  })
+  const iconClass = `${icon}`
 
   return (
     <button className={`isoControlBtn ${buttonClass}`} onClick={clickHandler}>
-      <Icon type={iconClass} />
+      {/* <Icon type={iconClass} /> */}
       {text}
     </button>
-  );
-};
+  )
+}
 
-export default Toggle;
+export default Toggle

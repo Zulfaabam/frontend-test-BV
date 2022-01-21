@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Icon } from 'antd';
-import Modal from '../../../components/feedback/modal';
-import Upload from '../../../components/uielements/upload';
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
+import React, { Component } from 'react'
+// import { Icon } from 'antd';
+import Modal from '../../../components/feedback/modal'
+import Upload from '../../../components/uielements/upload'
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
 
 export default class extends Component {
   state = {
@@ -17,30 +17,30 @@ export default class extends Component {
         name: 'xxx.png',
         status: 'done',
         url:
-          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-      }
-    ]
-  };
+          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+    ],
+  }
 
-  handleCancel = () => this.setState({ previewVisible: false });
+  handleCancel = () => this.setState({ previewVisible: false })
 
-  handlePreview = file => {
+  handlePreview = (file) => {
     this.setState({
       previewImage: file.url || file.thumbUrl,
-      previewVisible: true
-    });
-  };
+      previewVisible: true,
+    })
+  }
 
-  handleChange = ({ fileList }) => this.setState({ fileList });
+  handleChange = ({ fileList }) => this.setState({ fileList })
 
   render() {
-    const { previewVisible, previewImage, fileList } = this.state;
+    const { previewVisible, previewImage, fileList } = this.state
     const uploadButton = (
       <div className="isoUploadBtn">
-        <Icon type="plus" />
+        {/* <Icon type="plus" /> */}
         <span className="isoUploadText">Upload</span>
       </div>
-    );
+    )
     return (
       <LayoutWrapper>
         <PageHeader>Upload</PageHeader>
@@ -69,6 +69,6 @@ export default class extends Component {
           </ContentHolder>
         </Box>
       </LayoutWrapper>
-    );
+    )
   }
 }

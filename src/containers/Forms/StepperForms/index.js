@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import IsomorphicTransfer from '../Transfer';
-import AntdUpload from '../Upload';
-import AntdCheckbox from '../Checkbox';
-import AntdAutocomplete from '../AutoComplete';
-import AntdRadiobox from '../Radiobox';
-import AntdSelectBox from '../Select';
-import AntdMention from '../Mention';
-import AntdRater from '../Rating';
-import AntdSlider from '../Slider';
-import AntdInputNumber from '../InputNumber';
-import Button from '../../../components/uielements/button';
-import Steps from '../../../components/uielements/steps';
-import message from '../../../components/uielements/message';
-import Input from '../../../components/uielements/input';
-import PageHeader from '../../../components/utility/pageHeader';
-import ContentHolder from '../../../components/utility/contentHolder';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import { FormFieldTitle } from './formFieldTitle.style';
-const Step = Steps.Step;
+import React, { Component } from 'react'
+import IsomorphicTransfer from '../Transfer'
+import AntdUpload from '../Upload'
+import AntdCheckbox from '../Checkbox'
+import AntdAutocomplete from '../AutoComplete'
+import AntdRadiobox from '../Radiobox'
+import AntdSelectBox from '../Select'
+import AntdMentions from '../Mention'
+import AntdRater from '../Rating'
+import AntdSlider from '../Slider'
+import AntdInputNumber from '../InputNumber'
+import Button from '../../../components/uielements/button'
+import Steps from '../../../components/uielements/steps'
+import message from '../../../components/uielements/message'
+import Input from '../../../components/uielements/input'
+import PageHeader from '../../../components/utility/pageHeader'
+import ContentHolder from '../../../components/utility/contentHolder'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import { FormFieldTitle } from './formFieldTitle.style'
+const Step = Steps.Step
 
 const steps = [
   {
@@ -41,7 +41,7 @@ const steps = [
           <AntdCheckbox className="isomorphicCheckbox" />
         </div>
       </div>
-    )
+    ),
   },
   {
     title: 'Second',
@@ -50,9 +50,9 @@ const steps = [
         <AntdAutocomplete />
         <AntdRadiobox />
         <AntdSelectBox />
-        <AntdMention />
+        <AntdMentions />
       </div>
-    )
+    ),
   },
   {
     title: 'Last',
@@ -62,33 +62,35 @@ const steps = [
         <AntdSlider />
         <AntdInputNumber />
       </div>
-    )
-  }
-];
+    ),
+  },
+]
 
 export default class extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      current: 0
-    };
+      current: 0,
+    }
   }
   next() {
-    const current = this.state.current + 1;
-    this.setState({ current });
+    const current = this.state.current + 1
+    this.setState({ current })
   }
   prev() {
-    const current = this.state.current - 1;
-    this.setState({ current });
+    const current = this.state.current - 1
+    this.setState({ current })
   }
   render() {
-    const { current } = this.state;
+    const { current } = this.state
     return (
       <LayoutWrapper>
         <PageHeader>Stepper Form</PageHeader>
         <ContentHolder>
           <Steps current={current}>
-            {steps.map(item => <Step key={item.title} title={item.title} />)}
+            {steps.map((item) => (
+              <Step key={item.title} title={item.title} />
+            ))}
           </Steps>
 
           <div s="steps-content">{steps[this.state.current].content}</div>
@@ -114,6 +116,6 @@ export default class extends Component {
           </div>
         </ContentHolder>
       </LayoutWrapper>
-    );
+    )
   }
 }

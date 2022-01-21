@@ -1,23 +1,23 @@
 export default {
-  apiUrl: 'http://yoursite.com/api/'
-};
+  apiUrl: 'http://yoursite.com/api/',
+}
 const siteConfig = {
   siteName: 'ISOMORPHIC',
   siteIcon: 'ion-flash',
-  footerText: 'Isomorphic ©2017 Created by RedQ, Inc'
-};
+  footerText: 'Isomorphic ©2017 Created by RedQ, Inc',
+}
 
 const themeConfig = {
   topbar: 'themedefault',
   sidebar: 'themedefault',
   layout: 'themedefault',
-  theme: 'themedefault'
-};
-const language = 'english';
+  theme: 'themedefault',
+}
+const language = 'english'
 const AlgoliaSearchConfig = {
   appId: '',
-  apiKey: ''
-};
+  apiKey: '',
+}
 const Auth0Config = {
   domain: '',
   clientID: '',
@@ -29,12 +29,12 @@ const Auth0Config = {
     auth: {
       autoParseHash: true,
       redirect: true,
-      redirectUrl: 'http://localhost:3000/auth0loginCallback'
+      redirectUrl: 'http://localhost:3000/auth0loginCallback',
     },
     languageDictionary: {
       title: 'Isomorphic',
       emailInputPlaceholder: 'demo@gmail.com',
-      passwordInputPlaceholder: 'demodemo'
+      passwordInputPlaceholder: 'demodemo',
     },
     theme: {
       labeledSubmitButton: true,
@@ -44,30 +44,30 @@ const Auth0Config = {
         connectionName: {
           displayName: 'Log In',
           primaryColor: '#b7b7b7',
-          foregroundColor: '#000000'
-        }
-      }
-    }
-  }
-};
+          foregroundColor: '#000000',
+        },
+      },
+    },
+  },
+}
 const firebaseConfig = {
   apiKey: '',
   authDomain: '',
   databaseURL: '',
   projectId: '',
   storageBucket: '',
-  messagingSenderId: ''
-};
+  messagingSenderId: '',
+}
 const googleConfig = {
-  apiKey: '' //
-};
+  apiKey: '', //
+}
 const mapboxConfig = {
   tileLayer: '',
   maxZoom: '',
   defaultZoom: '',
-  center: []
-};
-const youtubeSearchApi = '';
+  center: [],
+}
+const youtubeSearchApi = ''
 export {
   siteConfig,
   themeConfig,
@@ -77,5 +77,5 @@ export {
   firebaseConfig,
   googleConfig,
   mapboxConfig,
-  youtubeSearchApi
-};
+  youtubeSearchApi,
+}

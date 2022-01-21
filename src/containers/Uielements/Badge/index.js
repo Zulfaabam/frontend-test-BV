@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Icon } from 'antd';
-import { Row, Col } from 'antd';
+import React, { Component } from 'react'
+// import { Icon } from 'antd';
+import { Row, Col } from 'antd'
 
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
-import basicStyle from '../../../settings/basicStyle';
-import IntlMessages from '../../../components/utility/intlMessages';
-import Badge from './badge.style';
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
+import basicStyle from '../../../settings/basicStyle'
+import IntlMessages from '../../../components/utility/intlMessages'
+import Badge from './badge.style'
 
 export default class extends Component {
   render() {
-    const { rowStyle, colStyle, gutter } = basicStyle;
+    const { rowStyle, colStyle, gutter } = basicStyle
     return (
       <LayoutWrapper>
         <PageHeader>{<IntlMessages id="uiElements.badge.badge" />}</PageHeader>
@@ -117,9 +117,7 @@ export default class extends Component {
               subtitle={<IntlMessages id="uiElements.badge.redBadgeSubTitle" />}
             >
               <ContentHolder>
-                <Badge dot>
-                  <Icon type="notification" />
-                </Badge>
+                <Badge dot>{/* <Icon type="notification" /> */}</Badge>
                 <Badge dot>
                   <a href=".">
                     {<IntlMessages id="uiElements.badge.linkSomething" />}
@@ -130,6 +128,6 @@ export default class extends Component {
           </Col>
         </Row>
       </LayoutWrapper>
-    );
+    )
   }
 }

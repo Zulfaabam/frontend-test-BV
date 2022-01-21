@@ -1,55 +1,55 @@
-import React, { Component } from 'react';
-import { Menu, Icon, Switch } from 'antd';
+import React, { Component } from 'react'
+import { Menu, Switch } from 'antd'
 
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+const SubMenu = Menu.SubMenu
+const MenuItemGroup = Menu.ItemGroup
 
 export default class extends Component {
   state = {
     current: '1',
     openKeys: [],
     theme: 'dark',
-    mode: 'inline'
-  };
-  handleClick = e => {
+    mode: 'inline',
+  }
+  handleClick = (e) => {
     this.setState({
-      current: e.key
-    });
-  };
-  changeMode = value => {
+      current: e.key,
+    })
+  }
+  changeMode = (value) => {
     this.setState({
-      mode: value ? 'vertical' : 'inline'
-    });
-  };
-  onOpenChange = openKeys => {
-    const state = this.state;
+      mode: value ? 'vertical' : 'inline',
+    })
+  }
+  onOpenChange = (openKeys) => {
+    const state = this.state
     const latestOpenKey = openKeys.find(
-      key => !(state.openKeys.indexOf(key) > -1)
-    );
+      (key) => !(state.openKeys.indexOf(key) > -1)
+    )
     const latestCloseKey = state.openKeys.find(
-      key => !(openKeys.indexOf(key) > -1)
-    );
+      (key) => !(openKeys.indexOf(key) > -1)
+    )
 
-    let nextOpenKeys = [];
+    let nextOpenKeys = []
     if (latestOpenKey) {
-      nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
+      nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey)
     }
     if (latestCloseKey) {
-      nextOpenKeys = this.getAncestorKeys(latestCloseKey);
+      nextOpenKeys = this.getAncestorKeys(latestCloseKey)
     }
-    this.setState({ openKeys: nextOpenKeys });
-  };
-  getAncestorKeys = key => {
+    this.setState({ openKeys: nextOpenKeys })
+  }
+  getAncestorKeys = (key) => {
     const map = {
-      sub3: ['sub2']
-    };
-    return map[key] || [];
-  };
-  changeTheme = value => {
+      sub3: ['sub2'],
+    }
+    return map[key] || []
+  }
+  changeTheme = (value) => {
     this.setState({
-      theme: value ? 'dark' : 'light'
-    });
-  };
+      theme: value ? 'dark' : 'light',
+    })
+  }
 
   render() {
     return (
@@ -62,15 +62,15 @@ export default class extends Component {
             mode="horizontal"
           >
             <Menu.Item key="mail">
-              <Icon type="mail" />Navigation One
+              {/* <Icon type="mail" />Navigation One */}
             </Menu.Item>
             <Menu.Item key="app" disabled>
-              <Icon type="appstore" />Navigation Two
+              {/* <Icon type="appstore" />Navigation Two */}
             </Menu.Item>
             <SubMenu
               title={
                 <span>
-                  <Icon type="setting" />Navigation Three - Submenu
+                  {/* <Icon type="setting" />Navigation Three - Submenu */}
                 </span>
               }
             >
@@ -112,7 +112,7 @@ export default class extends Component {
               key="sub1"
               title={
                 <span>
-                  <Icon type="mail" />
+                  {/* <Icon type="mail" /> */}
                   <span>Navigation One</span>
                 </span>
               }
@@ -130,7 +130,7 @@ export default class extends Component {
               key="sub2"
               title={
                 <span>
-                  <Icon type="appstore" />
+                  {/* <Icon type="appstore" /> */}
                   <span>Navigation Two</span>
                 </span>
               }
@@ -146,7 +146,7 @@ export default class extends Component {
               key="sub4"
               title={
                 <span>
-                  <Icon type="setting" />
+                  {/* <Icon type="setting" /> */}
                   <span>Navigation Three</span>
                 </span>
               }
@@ -177,7 +177,7 @@ export default class extends Component {
               key="sub1"
               title={
                 <span>
-                  <Icon type="mail" />
+                  {/* <Icon type="mail" /> */}
                   <span>Navigation One</span>
                 </span>
               }
@@ -191,7 +191,7 @@ export default class extends Component {
               key="sub2"
               title={
                 <span>
-                  <Icon type="appstore" />
+                  {/* <Icon type="appstore" /> */}
                   <span>Navigation Two</span>
                 </span>
               }
@@ -207,7 +207,7 @@ export default class extends Component {
               key="sub4"
               title={
                 <span>
-                  <Icon type="setting" />
+                  {/* <Icon type="setting" /> */}
                   <span>Navigation Three</span>
                 </span>
               }
@@ -236,7 +236,7 @@ export default class extends Component {
               key="sub1"
               title={
                 <span>
-                  <Icon type="mail" />
+                  {/* <Icon type="mail" /> */}
                   <span>Navigation One</span>
                 </span>
               }
@@ -254,7 +254,7 @@ export default class extends Component {
               key="sub2"
               title={
                 <span>
-                  <Icon type="appstore" />
+                  {/* <Icon type="appstore" /> */}
                   <span>Navigation Two</span>
                 </span>
               }
@@ -311,7 +311,7 @@ export default class extends Component {
                 key="sub1"
                 title={
                   <span>
-                    <Icon type="mail" />
+                    {/* <Icon type="mail" /> */}
                     <span>Navigation One</span>
                   </span>
                 }
@@ -325,7 +325,7 @@ export default class extends Component {
                 key="sub2"
                 title={
                   <span>
-                    <Icon type="appstore" />
+                    {/* <Icon type="appstore" /> */}
                     <span>Navigtion Two</span>
                   </span>
                 }
@@ -341,7 +341,7 @@ export default class extends Component {
                 key="sub4"
                 title={
                   <span>
-                    <Icon type="setting" />
+                    {/* <Icon type="setting" /> */}
                     <span>Navigation Three</span>
                   </span>
                 }
@@ -373,7 +373,7 @@ export default class extends Component {
               key="sub1"
               title={
                 <span>
-                  <Icon type="mail" />
+                  {/* <Icon type="mail" /> */}
                   <span>Navigation One</span>
                 </span>
               }
@@ -391,7 +391,7 @@ export default class extends Component {
               key="sub2"
               title={
                 <span>
-                  <Icon type="appstore" />
+                  {/* <Icon type="appstore" /> */}
                   <span>Navigation Two</span>
                 </span>
               }
@@ -407,7 +407,7 @@ export default class extends Component {
               key="sub4"
               title={
                 <span>
-                  <Icon type="setting" />
+                  {/* <Icon type="setting" /> */}
                   <span>Navigation Three</span>
                 </span>
               }
@@ -425,6 +425,6 @@ export default class extends Component {
         <br />
         <br />
       </div>
-    );
+    )
   }
 }

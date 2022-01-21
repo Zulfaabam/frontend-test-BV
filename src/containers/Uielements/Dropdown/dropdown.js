@@ -1,53 +1,53 @@
-import React, { Component } from 'react';
-import { Icon, Row, Col } from 'antd';
-import Menu from '../../../components/uielements/menu';
+import React, { Component } from 'react'
+import { Row, Col } from 'antd'
+import Menu from '../../../components/uielements/menu'
 import Dropdown, {
   DropdownButtons,
   DropdownMenu,
   MenuItem,
   SubMenu,
-} from '../../../components/uielements/dropdown';
-import Buttons from '../../../components/uielements/button';
-import message from '../../../components/uielements/message';
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
-import basicStyle from '../../../settings/basicStyle';
-import IntlMessages from '../../../components/utility/intlMessages';
-import { rtl } from '../../../settings/withDirection';
-const MenuDivider = Menu.Divider;
-const DropdownButton = DropdownButtons;
-const Button = Buttons;
+} from '../../../components/uielements/dropdown'
+import Buttons from '../../../components/uielements/button'
+import message from '../../../components/uielements/message'
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
+import basicStyle from '../../../settings/basicStyle'
+import IntlMessages from '../../../components/utility/intlMessages'
+import { rtl } from '../../../settings/withDirection'
+const MenuDivider = Menu.Divider
+const DropdownButton = DropdownButtons
+const Button = Buttons
 
 export default class IsoDropDown extends Component {
   state = {
     visible: false,
-  };
+  }
 
-  handleButtonClick = e => {
-    message.info('Click on left button.');
-  };
+  handleButtonClick = (e) => {
+    message.info('Click on left button.')
+  }
 
-  handleMenuClickToLink = e => {
-    message.info('Click on menu item.');
-  };
+  handleMenuClickToLink = (e) => {
+    message.info('Click on menu item.')
+  }
 
-  handleMenuClick = e => {
+  handleMenuClick = (e) => {
     if (e.key === '3') {
-      this.setState({ visible: false });
+      this.setState({ visible: false })
     }
-  };
-  handleVisibleChange = flag => {
-    this.setState({ visible: flag });
-  };
+  }
+  handleVisibleChange = (flag) => {
+    this.setState({ visible: flag })
+  }
 
   render() {
-    const { rowStyle, colStyle, gutter } = basicStyle;
+    const { rowStyle, colStyle, gutter } = basicStyle
     const demoStyle = {
       marginBottom: '8px',
       marginRight: '8px',
-    };
+    }
 
     const menuHover = (
       <DropdownMenu>
@@ -67,7 +67,7 @@ export default class IsoDropDown extends Component {
           </a>
         </MenuItem>
       </DropdownMenu>
-    );
+    )
     const menuHoverDisable = (
       <DropdownMenu>
         <MenuItem key="0">
@@ -85,14 +85,14 @@ export default class IsoDropDown extends Component {
           3d menu item（disabled）
         </MenuItem>
       </DropdownMenu>
-    );
+    )
     const menuClicked = (
       <DropdownMenu onClick={this.handleMenuClickToLink}>
         <MenuItem key="1">1st menu item</MenuItem>
         <MenuItem key="2">2nd menu item</MenuItem>
         <MenuItem key="3">3d menu item</MenuItem>
       </DropdownMenu>
-    );
+    )
 
     const menuSubmenu = (
       <DropdownMenu>
@@ -103,7 +103,7 @@ export default class IsoDropDown extends Component {
           <MenuItem>4th menu item</MenuItem>
         </SubMenu>
       </DropdownMenu>
-    );
+    )
 
     return (
       <LayoutWrapper>
@@ -120,7 +120,7 @@ export default class IsoDropDown extends Component {
                 <Dropdown overlay={menuHover}>
                   <a className="ant-dropdown-link" href="# ">
                     {<IntlMessages id="uiElements.dropdown.hoverMe" />}{' '}
-                    <Icon type="down" />
+                    {/* <Icon type="down" /> */}
                   </a>
                 </Dropdown>
               </ContentHolder>
@@ -164,7 +164,7 @@ export default class IsoDropDown extends Component {
               <ContentHolder>
                 <Dropdown overlay={menuHoverDisable}>
                   <a className="ant-dropdown-link" href="# ">
-                    Hover me <Icon type="down" />
+                    {/* Hover me <Icon type="down" /> */}
                   </a>
                 </Dropdown>
               </ContentHolder>
@@ -178,7 +178,7 @@ export default class IsoDropDown extends Component {
               <ContentHolder>
                 <Dropdown overlay={menuHover} trigger={['click']}>
                   <a className="ant-dropdown-link" href="# ">
-                    Click me <Icon type="down" />
+                    {/* Click me <Icon type="down" /> */}
                   </a>
                 </Dropdown>
               </ContentHolder>
@@ -214,7 +214,7 @@ export default class IsoDropDown extends Component {
                       margin: rtl === 'rtl' ? '0 8px 0 0' : '0 0 0 8px',
                     }}
                   >
-                    Button <Icon type="down" />
+                    {/* Button <Icon type="down" /> */}
                   </Button>
                 </Dropdown>
               </ContentHolder>
@@ -228,7 +228,7 @@ export default class IsoDropDown extends Component {
               <ContentHolder>
                 <Dropdown overlay={menuSubmenu}>
                   <a className="ant-dropdown-link" href="# ">
-                    Cascading menu <Icon type="down" />
+                    {/* Cascading menu <Icon type="down" /> */}
                   </a>
                 </Dropdown>
               </ContentHolder>
@@ -236,6 +236,6 @@ export default class IsoDropDown extends Component {
           </Col>
         </Row>
       </LayoutWrapper>
-    );
+    )
   }
 }

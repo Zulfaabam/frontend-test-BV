@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import contactAction from '../../redux/contacts/actions';
-import { Layout, Icon } from 'antd';
-import Button from '../../components/uielements/button';
-import ContactList from '../../components/contacts/contactList';
-import SingleContactView from '../../components/contacts/singleView';
-import EditContactView from '../../components/contacts/editView';
-import DeleteButton from '../../components/contacts/deleteButton';
-import { otherAttributes } from './fakeData';
-import IntlMessages from '../../components/utility/intlMessages';
-import { ContactsWrapper } from './contacts.style';
-import Scrollbar from '../../components/utility/customScrollBar.js';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import contactAction from '../../redux/contacts/actions'
+import { Layout } from 'antd'
+import Button from '../../components/uielements/button'
+import ContactList from '../../components/contacts/contactList'
+import SingleContactView from '../../components/contacts/singleView'
+import EditContactView from '../../components/contacts/editView'
+import DeleteButton from '../../components/contacts/deleteButton'
+import { otherAttributes } from './fakeData'
+import IntlMessages from '../../components/utility/intlMessages'
+import { ContactsWrapper } from './contacts.style'
+import Scrollbar from '../../components/utility/customScrollBar.js'
 
 const {
   changeContact,
@@ -18,9 +18,9 @@ const {
   editContact,
   deleteContact,
   viewChange,
-} = contactAction;
+} = contactAction
 
-const { Content } = Layout;
+const { Content } = Layout
 class Contacts extends Component {
   render() {
     const {
@@ -32,11 +32,11 @@ class Contacts extends Component {
       editContact,
       deleteContact,
       viewChange,
-    } = this.props;
+    } = this.props
     const selectedContact = seectedId
-      ? contacts.filter(contact => contact.id === seectedId)[0]
-      : null;
-    const onVIewChange = () => viewChange(!editView);
+      ? contacts.filter((contact) => contact.id === seectedId)[0]
+      : null
+    const onVIewChange = () => viewChange(!editView)
     return (
       <ContactsWrapper
         className="isomorphicContacts"
@@ -55,7 +55,7 @@ class Contacts extends Component {
             <Content className="isoContactBox">
               <div className="isoContactControl">
                 <Button type="default" onClick={onVIewChange}>
-                  {editView ? <Icon type="check" /> : <Icon type="edit" />}{' '}
+                  {/* {editView ? <Icon type="check" /> : <Icon type="edit" />}{' '} */}
                 </Button>
                 <DeleteButton
                   deleteContact={deleteContact}
@@ -98,25 +98,22 @@ class Contacts extends Component {
           )}
         </Layout>
       </ContactsWrapper>
-    );
+    )
   }
 }
 
 function mapStateToProps(state) {
-  const { contacts, seectedId, editView } = state.Contacts;
+  const { contacts, seectedId, editView } = state.Contacts
   return {
     contacts,
     seectedId,
     editView,
-  };
-}
-export default connect(
-  mapStateToProps,
-  {
-    changeContact,
-    addContact,
-    editContact,
-    deleteContact,
-    viewChange,
   }
-)(Contacts);
+}
+export default connect(mapStateToProps, {
+  changeContact,
+  addContact,
+  editContact,
+  deleteContact,
+  viewChange,
+})(Contacts)

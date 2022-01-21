@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Row, Col, Icon } from 'antd';
-import Button, { ButtonGroup } from '../../../components/uielements/button';
-import { RadioGroup, RadioButton } from '../../../components/uielements/radio';
+import React, { Component } from 'react'
+import { Row, Col } from 'antd'
+import Button, { ButtonGroup } from '../../../components/uielements/button'
+import { RadioGroup, RadioButton } from '../../../components/uielements/radio'
 import Dropdown, {
   DropdownMenu,
-  MenuItem
-} from '../../../components/uielements/dropdown';
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
-import basicStyle from '../../../settings/basicStyle';
-import IntlMessages from '../../../components/utility/intlMessages';
-import { rtl } from '../../../settings/withDirection';
+  MenuItem,
+} from '../../../components/uielements/dropdown'
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
+import basicStyle from '../../../settings/basicStyle'
+import IntlMessages from '../../../components/utility/intlMessages'
+import { rtl } from '../../../settings/withDirection'
 
 function handleMenuClick(e) {}
 
@@ -22,33 +22,33 @@ const menu = (
     <MenuItem key="2">2nd item</MenuItem>
     <MenuItem key="3">3rd item</MenuItem>
   </DropdownMenu>
-);
+)
 
 export default class extends Component {
   state = {
     size: 'default',
     loading: false,
-    iconLoading: false
-  };
+    iconLoading: false,
+  }
 
-  handleSizeChange = e => {
-    this.setState({ size: e.target.value });
-  };
+  handleSizeChange = (e) => {
+    this.setState({ size: e.target.value })
+  }
 
   enterLoading = () => {
-    this.setState({ loading: true });
-  };
+    this.setState({ loading: true })
+  }
 
   enterIconLoading = () => {
-    this.setState({ iconLoading: true });
-  };
+    this.setState({ iconLoading: true })
+  }
 
   render() {
-    const size = this.state.size;
+    const size = this.state.size
     const margin = {
-      margin: rtl === 'rtl' ? '0 0 8px 8px' : '0 8px 8px 0'
-    };
-    const { rowStyle, colStyle, gutter } = basicStyle;
+      margin: rtl === 'rtl' ? '0 0 8px 8px' : '0 8px 8px 0',
+    }
+    const { rowStyle, colStyle, gutter } = basicStyle
     return (
       <LayoutWrapper>
         <PageHeader>{<IntlMessages id="forms.button.header" />}</PageHeader>
@@ -142,10 +142,10 @@ export default class extends Component {
               <ContentHolder>
                 <ButtonGroup size={size}>
                   <Button type="primary">
-                    <Icon type="left" />Backward
+                    {/* <Icon type="left" />Backward */}
                   </Button>
                   <Button type="primary">
-                    Forward<Icon type="right" />
+                    {/* Forward<Icon type="right" /> */}
                   </Button>
                 </ButtonGroup>
               </ContentHolder>
@@ -228,9 +228,7 @@ export default class extends Component {
                 </Button>
                 <Button style={margin}>secondary</Button>
                 <Dropdown overlay={menu}>
-                  <Button>
-                    more <Icon type="down" />
-                  </Button>
+                  <Button>{/* more <Icon type="down" /> */}</Button>
                 </Dropdown>
               </ContentHolder>
             </Box>
@@ -262,10 +260,10 @@ export default class extends Component {
                 <h4>With Icon</h4>
                 <ButtonGroup style={margin}>
                   <Button type="primary">
-                    <Icon type="left" />Go back
+                    {/* <Icon type="left" />Go back */}
                   </Button>
                   <Button type="primary">
-                    Go forward<Icon type="right" />
+                    {/* Go forward<Icon type="right" /> */}
                   </Button>
                 </ButtonGroup>
                 <ButtonGroup>
@@ -277,6 +275,6 @@ export default class extends Component {
           </Col>
         </Row>
       </LayoutWrapper>
-    );
+    )
   }
 }

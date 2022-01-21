@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import moment from 'moment';
-import { Icon } from 'antd';
-import { SingleCardWrapper } from './shuffle.style';
+import React, { Component } from 'react'
+import moment from 'moment'
+// import { Icon } from 'antd';
+import { SingleCardWrapper } from './shuffle.style'
 
 export default class extends Component {
   render() {
-    const listClass = `isoSingleCard card ${this.props.view}`;
-    const style = { zIndex: 100 - this.props.index };
+    const listClass = `isoSingleCard card ${this.props.view}`
+    const style = { zIndex: 100 - this.props.index }
 
     return (
       <SingleCardWrapper id={this.props.id} className={listClass} style={style}>
@@ -20,9 +20,9 @@ export default class extends Component {
           </span>
         </div>
         <button className="isoDeleteBtn" onClick={this.props.clickHandler}>
-          <Icon type="close" />
+          {/* <Icon type="close" /> */}
         </button>
       </SingleCardWrapper>
-    );
+    )
   }
 }

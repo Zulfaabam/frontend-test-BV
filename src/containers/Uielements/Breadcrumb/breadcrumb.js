@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Row, Col, Icon } from 'antd';
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
-import basicStyle from '../../../settings/basicStyle';
-import Breadcrumb from './breadcrumb.style';
+import React, { Component } from 'react'
+import { Row, Col } from 'antd'
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
+import basicStyle from '../../../settings/basicStyle'
+import Breadcrumb from './breadcrumb.style'
 
 export default class extends Component {
   render() {
-    const { rowStyle, colStyle, gutter } = basicStyle;
+    const { rowStyle, colStyle, gutter } = basicStyle
     return (
       <LayoutWrapper>
         <PageHeader>BreadCrumb</PageHeader>
@@ -41,10 +41,10 @@ export default class extends Component {
               <ContentHolder>
                 <Breadcrumb>
                   <Breadcrumb.Item href="# ">
-                    <Icon type="home" />
+                    {/* <Icon type="home" /> */}
                   </Breadcrumb.Item>
                   <Breadcrumb.Item href="# ">
-                    <Icon type="user" />
+                    {/* <Icon type="user" /> */}
                     <span>Application List</span>
                   </Breadcrumb.Item>
                   <Breadcrumb.Item>Application</Breadcrumb.Item>
@@ -73,6 +73,6 @@ export default class extends Component {
           </Col>
         </Row>
       </LayoutWrapper>
-    );
+    )
   }
 }

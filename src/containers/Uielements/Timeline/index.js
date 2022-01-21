@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
-import { Row, Col, Icon } from 'antd';
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
-import basicStyle from '../../../settings/basicStyle';
-import IntlMessages from '../../../components/utility/intlMessages';
-import Timeline, {
-  TimelineItem,
-} from '../../../components/uielements/timeline';
+import React, { Component } from 'react'
+import { Row, Col } from 'antd'
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
+import basicStyle from '../../../settings/basicStyle'
+import IntlMessages from '../../../components/utility/intlMessages'
+import Timeline, { TimelineItem } from '../../../components/uielements/timeline'
 
 export default class extends Component {
   render() {
-    const { rowStyle, colStyle, gutter } = basicStyle;
+    const { rowStyle, colStyle, gutter } = basicStyle
     return (
       <LayoutWrapper>
         <PageHeader>
@@ -90,15 +88,7 @@ export default class extends Component {
                   <TimelineItem>
                     Solve initial network problems 2015-09-01
                   </TimelineItem>
-                  <TimelineItem
-                    dot={
-                      <Icon
-                        type="clock-circle-o"
-                        style={{ fontSize: '16px' }}
-                      />
-                    }
-                    color="red"
-                  >
+                  <TimelineItem dot={''} color="red">
                     Technical testing 2015-09-01
                   </TimelineItem>
                   <TimelineItem>
@@ -134,6 +124,6 @@ export default class extends Component {
           </Col>
         </Row>
       </LayoutWrapper>
-    );
+    )
   }
 }

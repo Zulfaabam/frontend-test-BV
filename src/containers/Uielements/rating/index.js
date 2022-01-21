@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { Row, Col, Icon } from 'antd';
-import Rate from '../../../components/uielements/rate';
-import PageHeader from '../../../components/utility/pageHeader';
-import Box from '../../../components/utility/box';
-import LayoutWrapper from '../../../components/utility/layoutWrapper.js';
-import ContentHolder from '../../../components/utility/contentHolder';
-import basicStyle from '../../../settings/basicStyle';
-import IntlMessages from '../../../components/utility/intlMessages';
+import React, { Component } from 'react'
+import { Row, Col } from 'antd'
+import Rate from '../../../components/uielements/rate'
+import PageHeader from '../../../components/utility/pageHeader'
+import Box from '../../../components/utility/box'
+import LayoutWrapper from '../../../components/utility/layoutWrapper.js'
+import ContentHolder from '../../../components/utility/contentHolder'
+import basicStyle from '../../../settings/basicStyle'
+import IntlMessages from '../../../components/utility/intlMessages'
 
 export default class extends Component {
   state = {
     value: 3,
-    count: null
-  };
-  handleChange = value => {
-    this.setState({ value });
-  };
+    count: null,
+  }
+  handleChange = (value) => {
+    this.setState({ value })
+  }
   render() {
-    const { value } = this.state;
-    const { rowStyle, colStyle, gutter } = basicStyle;
+    const { value } = this.state
+    const { rowStyle, colStyle, gutter } = basicStyle
     return (
       <LayoutWrapper>
         <PageHeader>
@@ -90,7 +90,7 @@ export default class extends Component {
               }
             >
               <ContentHolder>
-                <Rate character={<Icon type="heart" />} allowHalf />
+                {/* <Rate character={<Icon type="heart" />} allowHalf /> */}
                 <br />
                 <Rate character="A" allowHalf style={{ fontSize: 36 }} />
               </ContentHolder>
@@ -98,6 +98,6 @@ export default class extends Component {
           </Col>
         </Row>
       </LayoutWrapper>
-    );
+    )
   }
 }
