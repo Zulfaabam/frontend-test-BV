@@ -1,26 +1,43 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'antd'
 import PageHeader from '../../../components/utility/pageHeader'
 import Box from '../../../components/utility/box'
 import LayoutWrapper from '../../../components/utility/layoutWrapper'
-import { InputSearch } from '../../../components/uielements/input'
 import IntlMessages from '../../../components/utility/intlMessages'
 import notification from '../../../components/notification'
-// import GitResult from '../../components/githubResult'
 import GuestDetails from '../../components/guestDetails'
 import basicStyle from '../../../settings/basicStyle'
 import actions from '../../redux/guestSearch/actions'
+import validate from '../../components/formValidation'
+import { Form, Input } from 'antd'
+
+const { Search } = Input
+
+const formItemLayout = {
+  labelCol: {
+    span: 7,
+  },
+  wrapperCol: {
+    span: 12,
+  },
+}
 
 const { guestSearch } = actions
 
 function guestPortal({ GuestSearch }) {
   const { rowStyle, colStyle, gutter } = basicStyle
 
+  const [valid, setValid] = useState({})
+
   const onSearch = (value) => {
     if (value && value.length > 0) {
       guestSearch(value)
-      console.log(guestSearch(value))
+      validate(value)
+      setValid({ ...validate(value) })
+      GuestSearch.searchText = value
+      // console.log(guestSearch(value))
+      // console.log(validate(value))
     } else {
       notification('error', 'Please type something')
     }
@@ -40,7 +57,15 @@ function guestPortal({ GuestSearch }) {
         <Col md={24} sm={24} xs={24} style={colStyle}>
           <Box style={{ minHeight: 400 }}>
             <IntlMessages id="forms.input.booking" />
-            <InputSearch onSearch={onSearch} />
+            <Form>
+              <Form.Item
+                {...formItemLayout}
+                validateStatus={valid.validateStatus}
+                help={valid.errorMsg}
+              >
+                <Search onSearch={onSearch} />
+              </Form.Item>
+            </Form>
             <GuestDetails GuestSearch={GuestSearch} />
           </Box>
         </Col>
@@ -49,85 +74,8 @@ function guestPortal({ GuestSearch }) {
   )
 }
 
-// class guestPortal extends Component {
-//   onSearch = (value) => {
-//     if (value && value.length > 0) {
-//       guestSearch(value)
-//       console.log(guestSearch(value))
-//     } else {
-//       notification('error', 'Please type something')
-//     }
-//   }
-//   componentDidMount() {
-//     this.onSearch(this.props.GuestSearch.searchText)
-//   }
-
-//   render() {
-//     const { rowStyle, colStyle, gutter } = basicStyle
-//     const { GuestSearch } = this.props
-//     return (
-//       <LayoutWrapper>
-//         <PageHeader>
-//           <IntlMessages id="sidebar.guestPortal" />
-//         </PageHeader>
-//         <Row style={rowStyle} gutter={gutter} justify="start">
-//           <Col md={24} sm={24} xs={24} style={colStyle}>
-//             <Box style={{ minHeight: 400 }}>
-//               <IntlMessages id="forms.input.booking" />
-//               <InputSearch onSearch={this.onSearch} />
-//               <GuestDetails GuestSearch={GuestSearch} />
-//             </Box>
-//           </Col>
-//         </Row>
-//       </LayoutWrapper>
-//     )
-//   }
-// }
-
 function mapStateToProps(state) {
   return { GuestSearch: state.guestSearch }
 }
 
 export default connect(mapStateToProps, { guestSearch })(guestPortal)
-
-// const { gitSearch, onPageChange } = actions
-
-// class GuestPortal extends Component {
-//   onSearch = (value) => {
-//     if (value && value.length > 0) {
-//       this.props.gitSearch(value)
-//     } else {
-//       notification('error', 'Please type something')
-//     }
-//   }
-//   componentDidMount() {
-//     this.onSearch(this.props.GitSearch.searcText)
-//   }
-//   render() {
-//     const { rowStyle, colStyle, gutter } = basicStyle
-//     const { onPageChange, GitSearch } = this.props
-//     return (
-//       <LayoutWrapper>
-//         <PageHeader>
-//           <IntlMessages id="sidebar.githubSearch" />
-//         </PageHeader>
-//         <Row style={rowStyle} gutter={gutter} justify="start">
-//           <Col md={24} sm={24} xs={24} style={colStyle}>
-//             <Box style={{ minHeight: 220 }}>
-//               <InputSearch
-//                 placeholder="Github Search"
-//                 defaultValue={GitSearch.searcText}
-//                 onSearch={this.onSearch}
-//               />
-//               <GitResult
-//                 GitSearch={GitSearch}
-//                 defaultValue={GitSearch.searcText}
-//                 onPageChange={onPageChange}
-//               />
-//             </Box>
-//           </Col>
-//         </Row>
-//       </LayoutWrapper>
-//     )
-//   }
-// }

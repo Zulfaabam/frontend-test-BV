@@ -1,7 +1,7 @@
 import actions from './actions'
 
 const initState = {
-  searchText: 'HIJ12345',
+  searchText: '',
   result: {},
   loading: false,
   error: false,
@@ -26,7 +26,7 @@ export default function reducer(state = initState, action) {
       return {
         ...state,
         loading: false,
-        error: false,
+        error: true,
         result: {},
       }
     default:

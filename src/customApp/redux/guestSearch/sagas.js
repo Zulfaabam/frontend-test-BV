@@ -5,11 +5,12 @@ const guestSearchApi = `https://bv-online-assessment.herokuapp.com/api/bookings`
 const onSearchRequest = async (searchText) =>
   await fetch(`${guestSearchApi}/${searchText}`, { method: 'GET' })
     .then((res) => res.json())
+    .then((res) => res)
     .catch((error) => {
       throw error
     })
 
-function* searchRequest({ searchText }) {
+function* searchRequest(searchText) {
   try {
     const searchResult = yield call(onSearchRequest, searchText)
     yield put(actions.guestSearchSuccess(searchResult))

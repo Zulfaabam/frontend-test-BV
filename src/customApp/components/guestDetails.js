@@ -1,53 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Loader from '../../components/utility/loader'
 import HelperText from '../../components/utility/helper-text'
-import {
-  GuestDetailsListStyleWrapper,
-  GuestDetailsStyleWrapper,
-} from './guestDetails.style'
-
-const guestSearchApi = `https://bv-online-assessment.herokuapp.com/api/bookings`
+import { GuestDetailsStyleWrapper } from './guestDetails.style'
 
 function SearchList(result) {
   return (
-    <GuestDetailsListStyleWrapper className="isoGithubResultList">
-      {result.booking_name}
-      {/* {result.map((item) => {
-        const onClick = () => {
-          window.open(item.html_url, '_blank')
-        }
-        const updateDate = new Date(item.updated_at).toDateString()
-        return (
-          <div key={item.id} className="isoSingleRepository">
-            <div className="titleAndLanguage">
-              <h3>
-                <a onClick={onClick} href="# ">
-                  {`${item.full_name} `}
-                </a>
-              </h3>
-
-              {item.language ? (
-                <span className="language">{item.language}</span>
-              ) : (
-                ''
-              )}
-              {item.stargazers_count ? (
-                <span className="totalStars">{item.stargazers_count}</span>
-              ) : (
-                ''
-              )}
-            </div>
-            {item.description ? <p>{item.description}</p> : ''}
-            <span className="updateDate">Updated on {updateDate}</span>
-          </div>
-        )
-      })} */}
-    </GuestDetailsListStyleWrapper>
+    <GuestDetailsStyleWrapper className="isoGithubResultList">
+      <img src={result.profile_picture} alt={result.guest_name} />
+      <p>{result.guest_name}</p>
+      <p>thank you</p>
+      <p>{result.property_name}</p>
+      <div>
+        <span>{result.check_in_date}</span>
+        <span>{result.check_out_date}</span>
+      </div>
+      <p>
+        {result.arrival_time === ''
+          ? 'Please set your arrival time'
+          : result.arrival_time}
+      </p>
+    </GuestDetailsStyleWrapper>
   )
 }
 
 export default function guestDetails({ GuestSearch }) {
-  const { searchText, result, loading, error } = GuestSearch
+  const { searchText, loading, error } = GuestSearch
   if (!searchText) {
     return <div />
   }
@@ -57,26 +34,23 @@ export default function guestDetails({ GuestSearch }) {
   if (error) {
     return <HelperText text="THERE ARE SOME ERRORS" />
   }
-  if (Object.keys(result).length === 0) {
-    return <HelperText text="No Result Found" />
-  }
-  //   const [data, setData] = useState()
 
-  //   useEffect(() => {
-  //     const getData = async () =>
-  //       await fetch(`${guestSearchApi}/${searchText}`, { method: 'GET' })
-  //         .then((res) => res.json())
-  //         .then((res) => setData(res))
-  //         .catch((error) => error)
+  const [data, setData] = useState()
 
-  //     getData()
-  //   }, [searchText])
-  //   console.log(data)
+  useEffect(() => {
+    const getData = async () =>
+      await fetch(
+        `https://bv-online-assessment.herokuapp.com/api/bookings/${searchText}`,
+        { method: 'GET' }
+      )
+        .then((res) => res.json())
+        .then((res) => setData(res))
+        .catch((error) => error)
 
-  return (
-    <div>
-      <h1>guest details</h1>
-      {SearchList(result)}
-    </div>
-  )
+    getData()
+  }, [searchText])
+  console.log(data)
+  console.log(searchText)
+
+  return <div>{data === undefined ? <Loader /> : SearchList(data)}</div>
 }
