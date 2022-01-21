@@ -12,8 +12,9 @@ const GuestDetailsStyleWrapper = styled.div`
     height: 300px;
   }
 
+  strong,
   span {
-    margin-left: 0.5rem;
+    margin: 0 0.5rem;
   }
 `
 
