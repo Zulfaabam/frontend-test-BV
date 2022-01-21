@@ -2,23 +2,51 @@ import React, { useEffect, useState } from 'react'
 import Loader from '../../components/utility/loader'
 import HelperText from '../../components/utility/helper-text'
 import { GuestDetailsStyleWrapper } from './guestDetails.style'
+import IntlMessages from '../../components/utility/intlMessages'
+import { TimePicker } from 'antd'
+
+const etaApi = `https://bv-online-assessment.herokuapp.com/api/bookings/:booking_code/update-eta`
 
 function SearchList(result) {
+  // const [value, setValue] = useState(null)
+
+  // const onChange = (time) => {
+  //   setValue(time)
+  // }
+  function onChange(time, timeString) {
+    console.log(time, timeString)
+  }
+
   return (
-    <GuestDetailsStyleWrapper className="isoGithubResultList">
+    <GuestDetailsStyleWrapper>
       <img src={result.profile_picture} alt={result.guest_name} />
-      <p>{result.guest_name}</p>
-      <p>thank you</p>
-      <p>{result.property_name}</p>
+      <h3>Hi, {result.guest_name}!</h3>
+      <IntlMessages id="guest.thanks" />
       <div>
+        <IntlMessages id="guest.property.name" />
+        <span>{result.property_name}</span>
+      </div>
+      <div>
+        <IntlMessages id="guest.check.in.date" />
         <span>{result.check_in_date}</span>
+        <IntlMessages id="guest.check.out.date" />
         <span>{result.check_out_date}</span>
       </div>
-      <p>
-        {result.arrival_time === ''
-          ? 'Please set your arrival time'
-          : result.arrival_time}
-      </p>
+      <div>
+        <IntlMessages id="guest.arrival.time" />
+        <span>
+          <TimePicker
+            value={result.arrival_time === '' ? '' : result.arrival_time}
+            // value={value}
+            onChange={onChange}
+          />
+          {result.arrival_time === '' ? (
+            <IntlMessages id="guest.arrival.time.notset" />
+          ) : (
+            ''
+          )}
+        </span>
+      </div>
     </GuestDetailsStyleWrapper>
   )
 }
