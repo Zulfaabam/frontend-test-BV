@@ -4,18 +4,27 @@ import HelperText from '../../components/utility/helper-text'
 import { GuestDetailsStyleWrapper } from './guestDetails.style'
 import IntlMessages from '../../components/utility/intlMessages'
 import { TimePicker } from 'antd'
+import moment from 'moment'
 
 const etaApi = `https://bv-online-assessment.herokuapp.com/api/bookings/:booking_code/update-eta`
 
-function SearchList(result, onChange) {
+function SearchList(result) {
   // const [value, setValue] = useState(null)
 
   // const onChange = (time) => {
   //   setValue(time)
   // }
-  // function onChange(time, timeString) {
-  //   console.log(time, timeString)
+  // const updatedArrival = (time) => {
+  //   result.arrival_time = time
   // }
+
+  function onSelect(time) {
+    console.log(time)
+  }
+
+  function onChange(time, timeString) {
+    console.log(time, timeString)
+  }
 
   return (
     <GuestDetailsStyleWrapper>
@@ -24,20 +33,23 @@ function SearchList(result, onChange) {
       <IntlMessages id="guest.thanks" />
       <div>
         <IntlMessages id="guest.property.name" />
-        <span>{result.property_name}</span>
+        <strong>{result.property_name}</strong>
       </div>
       <div>
         <IntlMessages id="guest.check.in.date" />
-        <span>{result.check_in_date}</span>
+        <strong>{result.check_in_date}</strong>
         <IntlMessages id="guest.check.out.date" />
-        <span>{result.check_out_date}</span>
+        <strong>{result.check_out_date}</strong>
       </div>
       <div>
         <IntlMessages id="guest.arrival.time" />
         <span>
           <TimePicker
-            value={result.arrival_time === '' ? '' : result.arrival_time}
-            // value={value}
+            format="HH:mm"
+            value={result.arrival_time === '' ? moment() : result.arrival_time}
+            // value={moment()}
+            // value={(moment(updatedArrival), 'HH:mm')}
+            onSelect={onSelect}
             onChange={onChange}
           />
           {result.arrival_time === '' ? (
@@ -75,14 +87,14 @@ export default function guestDetails({ GuestSearch }) {
         .then((res) => setData(res))
         .catch((error) => error)
 
-    const updateEta = async () =>
-      await fetch(
-        `https://bv-online-assessment.herokuapp.com/api/bookings/${searchText}/updateEta`,
-        { method: 'PUT', body: 'arrival_time = 13:00' }
-          .then((res) => res.json())
-          .then((res) => setData(res))
-          .catch((error) => error)
-      )
+    // const updateEta = async () =>
+    //   await fetch(
+    //     `https://bv-online-assessment.herokuapp.com/api/bookings/${searchText}/updateEta`,
+    //     { method: 'PUT', body: 'arrival_time = 13:00' }
+    //       .then((res) => res.json())
+    //       .then((res) => setData(res))
+    //       .catch((error) => error)
+    //   )
 
     getData()
   }, [searchText])
